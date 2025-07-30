@@ -1,0 +1,20 @@
+# Configurações do Pipeline de Análise de Sessões
+pipeline_name: "AdvancedRetailUserAnalysis"
+log_level: "INFO"
+
+spark:
+  app_name: "AdvancedRetailAnalyticsPipeline"
+  master: "local[*]"
+
+# Parâmetros da Lógica de Negócio
+session_timeout_seconds: 1800 # 30 minutos
+
+# Caminhos dos Dados
+# NOTA: O arquivo '2019-Oct.csv' deve ser baixado do Kaggle e colocado neste caminho.
+data:
+  source_path: "data/source/2019-Oct.csv"
+  output_path:
+    sessionized_events: "data/intermediate/sessionized_events.parquet"
+    session_features: "data/analytical/session_features.parquet"
+    # Nova saída: tabela com resumo por usuário
+    user_summary: "data/analytical/user_summary.parquet"
